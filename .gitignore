@@ -1,0 +1,52 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+fine-tuning.ipynb
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs and debug
+logs/
+*.log
+
+# PyTorch / Transformers artifacts
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Hugging Face cache
+huggingface/
+.cache/huggingface/
+~/.cache/huggingface/
+
+# Dataset artifacts
+*.cache
+*.arrow
+
+# Checkpoints / outputs
+outputs/
+checkpoints/
+
+# VS Code
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
