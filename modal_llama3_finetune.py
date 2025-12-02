@@ -79,7 +79,7 @@ def train():
     # Resume settings
     # ======================
     RESUME_REPO_ID = "costadev00/pricer-2025-12-01_15.09.36"
-    RESUME_REVISION = "main"  # <--- PULL LATEST (use a commit sha here if you want to pin)
+    RESUME_REVISION = "49dd39b4523e4a2205cabfbcef1dd6c55891d845"
 
     # Optional wandb
     LOG_TO_WANDB = True
@@ -118,7 +118,7 @@ def train():
     LR_SCHEDULER_TYPE = "cosine"
     WARMUP_RATIO = 0.03
     OPTIMIZER = "paged_adamw_32bit"
-    SAVE_STEPS = 2000
+    SAVE_STEPS = 200
 
     # ===== Hugging Face login =====
     hf_login(os.environ["HF_TOKEN"], add_to_git_credential=True)
@@ -142,6 +142,7 @@ def train():
         token=os.environ["HF_TOKEN"],
         allow_patterns=[
             # checkpoints
+            "last-checkpoint",
             "last-checkpoint/**",
             "checkpoint-*/**",
 
@@ -163,17 +164,30 @@ def train():
     )
 
     resume_ckpt = None
+    ckpts = []  # <-- always defined
+
     last_ckpt = resume_root / "last-checkpoint"
     if last_ckpt.exists():
-        resume_ckpt = str(last_ckpt)
-    else:
+        if last_ckpt.is_dir():
+            resume_ckpt = str(last_ckpt)
+        else:
+            # last-checkpoint is a file containing something like "checkpoint-48000"
+            ckpt_name = last_ckpt.read_text(encoding="utf-8").strip().strip("/")
+            candidate = resume_root / ckpt_name
+            if candidate.exists() and candidate.is_dir():
+                resume_ckpt = str(candidate)
+
+    if resume_ckpt is None:
         ckpts = [p for p in resume_root.glob("checkpoint-*") if p.is_dir()]
         if ckpts:
             ckpts.sort(key=lambda p: int(p.name.split("-")[-1]))
             resume_ckpt = str(ckpts[-1])
 
-    if not resume_ckpt:
-        raise RuntimeError("No checkpoint found. Expected last-checkpoint/ or checkpoint-*/ folders.")
+    if resume_ckpt is None:
+        raise RuntimeError("No checkpoint found. Expected last-checkpoint or checkpoint-* folders.")
+
+    print(f"Resolved resume checkpoint: {resume_ckpt}")
+
 
     state_path = Path(resume_ckpt) / "trainer_state.json"
     state = {}
