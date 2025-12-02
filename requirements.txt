@@ -1,15 +1,41 @@
-torch==2.5.1
-torchvision==0.20.1
-torchaudio==2.5.1
+#THIS IS FOR GOOGLE COLAB
+# torch==2.5.1
+# torchvision==0.20.1
+# torchaudio==2.5.1
+# transformers==4.48.3
+# accelerate==1.3.0
+# peft==0.14.0
+# trl==0.14.0
+# datasets==3.2.0
+# evaluate==0.4.3
+# bitsandbytes==0.46.0
+# safetensors==0.4.5
+# huggingface_hub==0.26.2
+# wandb==0.17.0
+# matplotlib==3.9.2
+# requests==2.32.3
+
+
+#THIS IS FOR MODAL.COM SETUP
+modal>=0.64.0
+
+torch>=2.4,<3
+
 transformers==4.48.3
 accelerate==1.3.0
+datasets==3.2.0
+
+bitsandbytes==0.46.0
 peft==0.14.0
 trl==0.14.0
-datasets==3.2.0
-evaluate==0.4.3
-bitsandbytes==0.46.0
-safetensors==0.4.5
-huggingface_hub==0.26.2
-wandb==0.17.0
-matplotlib==3.9.2
-requests==2.32.3
+
+huggingface_hub>=0.26.0
+wandb>=0.17.0
+tqdm>=4.66.0
+
+matplotlib>=3.8.0
+
+# common HF extras that often prevent annoying runtime issues
+safetensors>=0.4.5
+sentencepiece>=0.2.0
+protobuf>=4.25.0
