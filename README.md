@@ -1,4 +1,4 @@
-# Fine-tuning Llama-3 (8B) with LoRA
+# Llama-3 Price Predictor Fine-Tuning (LoRA)
 
 Short, clear instructions and examples for fine-tuning the Llama-3 8B model on a custom dataset using LoRA (Low-Rank Adaptation). This repository contains documentation and links; it does not currently include training scripts. See the "Assumptions" section near the end.
 
