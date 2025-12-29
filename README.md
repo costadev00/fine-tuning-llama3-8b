@@ -7,8 +7,8 @@ Short, clear instructions and examples for fine-tuning the Llama-3 8B model on a
 Goal: adapt a pretrained Llama-3 8B model to a domain-specific task (example: predicting product price from description) using parameter-efficient fine-tuning (LoRA / PEFT).
 
 Key links from this project:
-- Dataset (example): https://huggingface.co/datasets/costadev00/pricer-data
-- Example Hugging Face model upload: https://huggingface.co/costadev00/pricer-2025-11-15_03.32.17
+- Dataset: https://huggingface.co/datasets/costadev00/pricer-data
+- Model: [https://huggingface.co/costadev00/pricer-2025-11-15_03.32.17](https://huggingface.co/costadev00/pricer-2025-12-01_15.09.36)
 
 ## Repository contents
 
